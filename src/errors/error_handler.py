@@ -1,9 +1,9 @@
 from src.views.http_types.http_response import HttpResponse
-from error_types.http_unprocessable_entity import HttpUnprocessableEntityError
+from .error_types.http_unprocessable_entity import HttpUnprocessableEntityError
 
 def handle_errors(error: Exception) -> HttpResponse:
-	if isinstance(error, HttpUnprocessableEntityError):
-		return HttpResponse(
+    if isinstance(error, HttpUnprocessableEntityError):
+        return HttpResponse(
 			status_code=error.status_code,
 			body={
 				"errors": [{
@@ -12,8 +12,7 @@ def handle_errors(error: Exception) -> HttpResponse:
 				}]
 			}
 		)
-	
-	return HttpResponse(
+    return HttpResponse(
     	status_code=500,
     	body={
       		"errors": [{
